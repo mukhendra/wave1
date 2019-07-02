@@ -1,1 +1,3 @@
 wget
+libstdc++6
+dist-upgrade
