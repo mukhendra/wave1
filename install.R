@@ -1,7 +1,3 @@
 install.packages("ADGofTest")
 install.packages("AlgDesign")
 install.packages("AnnotationDbi")
-install.packages("AnnotationFilter")
-install.packages("AnnotationHub")
-install.packages("BBmisc")
-install.packages("BH")
