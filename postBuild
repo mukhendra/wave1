@@ -2,3 +2,19 @@ cd ~/.local/
 wget -O longranger-2.2.2.tar.gz "http://cf.10xgenomics.com/releases/genome/longranger-2.2.2.tar.gz?Expires=1560934814&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cDovL2NmLjEweGdlbm9taWNzLmNvbS9yZWxlYXNlcy9nZW5vbWUvbG9uZ3Jhbmdlci0yLjIuMi50YXIuZ3oiLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE1NjA5MzQ4MTR9fX1dfQ__&Signature=ODRVallsv~y12LKr1m6PfX2EHozzlswxQnX-8GBl2SyRa43BpUwb-KBRGFeFC86k3nfqDNZc85R0aRQtEnnmE5BBn-H66J3Bi7bY9vkzDkdI44cjq9iQR8f3TZHX2bmzxgpXEK6~CW3wdPDLntDVLljrfj6CBUi8dnxAgLqTZj2oiVk6jSczqYh0oKIAjh9yH8M1j0Gy5euAK0TudNbagSruE~e2YR-ECYnRFeKmyldmoiUabuMUeSKeP-HkHUUlGmsKClmX-O8F2z~AqZ2vjTOkN6tgoYVudGApwT-1w1GsydTCzFUPk6kbkEV5zK0QJ-aVqedg9NpWohl37y1RCw__&Key-Pair-Id=APKAI7S6A5RYOXBWRPDA"
 tar -xzvf longranger-2.2.2.tar.gz
 export PATH=~/.local/longranger-2.2.2:$PATH
+
+#!/bin/bash
+RUN apt-get update
+RUN apt-get install sudo
+
+RUN adduser --disabled-password --gecos '' docker
+RUN adduser docker sudo
+RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+
+USER docker
+# this is where I was running into problems with the other approaches
+RUN sudo apt-get update USER docker
+CMD /bin/bash
+
+
+
